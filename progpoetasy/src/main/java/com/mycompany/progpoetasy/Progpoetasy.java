@@ -39,6 +39,22 @@ public class Progpoetasy {
             System.out.print("and is no more than 5 characters in length.");
         }
     }
+    //registering correctly formatted password
+    for (int i =0; i !=-1; i++){
+        Boolean password = checkPasswordComplexity();
+        if (password == true){
+            System.out.print("Password successfully captured ");
+            break;
+        }
+        else {
+            System.out.println("Password not correctly formatted: ");
+            System.out.print("Ensure that your password: ");
+            System.out.print("contains atleast 8 characters, ");
+            System.out.print("a capital letter, ");
+            System.out.print("a number, ");
+            System.out.print("and a special character.");
+        }
+    }
     
     }
     //Check if username is correctly formatted
@@ -63,5 +79,36 @@ public class Progpoetasy {
         else {
             return false;
         }
+    }
+    public static Boolean checkPasswordComplexity(){
+    //Declaration of variables
+    Boolean results;
+    String password;
+    int i;
+    
+    Scanner myRegister = new Scanner(System.in);
+    System.out.println("Enter a password: ");
+    password = myRegister.nextLine().trim();
+    
+    //Check if password meets criteria
+    if (password.length() <= 7){
+     return false;
+    }
+    Boolean Uppercase;
+    Boolean digit;
+    Boolean specialChar;
+    
+    for (char c : password.toCharArray()){
+    if (Character.isUpperCase(c)){
+     Uppercase = true;
+    }
+    if (Character.isDigit(c)){
+     digit = true;
+    }
+    if (!Character.isLetterOrDigit(c) && !Character.isWhitespace(c)){
+        specialChar = true;
+    }
+    }
+    return digit && specialChar && uppercase;
     }
 }
