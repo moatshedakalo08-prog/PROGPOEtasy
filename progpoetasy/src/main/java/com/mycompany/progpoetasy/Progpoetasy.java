@@ -61,7 +61,23 @@ public class Progpoetasy {
             System.out.println("and a special character.");
         }
     }
-    
+    String loginUsername;
+    String loginPassword;
+    for (int i =0; i !=-1; i++){
+        System.out.println("Enter your registered username: ");
+        loginUsername = myRegister.nextLine().trim();
+        System.out.println("Enter your registered password: ");
+        loginPassword = myRegister.nextLine().trim();
+        Boolean login = loginUser(regUsername, regPassword, loginUsername, loginPassword);
+        if (login == true){
+            returnLoginstatus();
+            break;
+        }
+        else {
+            System.out.println("Password or username is incorrect.");
+            
+        }
+    }
     }
     //Check if username is correctly formatted
     public static Boolean checkUserName(String regUsername){
@@ -108,5 +124,12 @@ public class Progpoetasy {
     }
     }
     return digit && specialChar && Uppercase;
+    }
+    public static Boolean loginUser(String regUsername, String regPassword, String loginUsername, String loginPassword){
+    //Declaration of variables
+    String logUser = loginUsername;
+    String regUser= regUsername;
+    String logPass = loginPassword;
+    String
     }
 }
