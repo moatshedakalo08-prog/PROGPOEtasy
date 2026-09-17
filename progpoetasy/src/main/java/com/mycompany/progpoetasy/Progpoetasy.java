@@ -24,11 +24,13 @@ public class Progpoetasy {
     name = myRegister.nextLine().trim();
     System.out.println("Enter your last name: ");
     lastName = myRegister.nextLine().trim();
-    
+    String regUsername;
     //Registering the a correctly formatted usename
     for (int i=0; i != -1; i++){
-        Boolean regUsername = checkUserName();
-        if (regUsername == true){
+        System.out.print("Enter a username: ");
+        regUsername = myRegister.nextLine().trim();
+        Boolean regUserName = checkUserName(regUsername);
+        if (regUserName == true){
             System.out.println("Username successsfully captured ");
             break;
         }
@@ -39,9 +41,13 @@ public class Progpoetasy {
             System.out.print("and is no more than 5 characters in length.");
         }
     }
+    String regPassword;
     //registering correctly formatted password
     for (int i =0; i !=-1; i++){
-        Boolean password = checkPasswordComplexity();
+         System.out.println("Enter a password: ");
+        regPassword = myRegister.nextLine().trim();
+    
+        Boolean password = checkPasswordComplexity(regPassword);
         if (password == true){
             System.out.print("Password successfully captured ");
             break;
@@ -52,51 +58,43 @@ public class Progpoetasy {
             System.out.print("contains atleast 8 characters, ");
             System.out.print("a capital letter, ");
             System.out.print("a number, ");
-            System.out.print("and a special character.");
+            System.out.println("and a special character.");
         }
     }
     
     }
     //Check if username is correctly formatted
-    public static Boolean checkUserName(){
-        //Declaration of variables
-        Boolean results;
-        results = true;
+    public static Boolean checkUserName(String regUsername){
+    //Declaration of variables
         String username;
-        int i;
+        username = regUsername;
+      
         
-        Scanner myRegister = new Scanner(System.in);
-        System.out.print("Enter a username: ");
-        username = myRegister.nextLine().trim();
         
         // Checking if username meets the criteria
         if (username.length() >= 6){
             return false;
         }
-        if (username.contains("_")){
-            return true;
-        }
+        if (username.contains("_")) {
+         return true;
+        } 
         else {
-            return false;
+          return false;
         }
     }
-    public static Boolean checkPasswordComplexity(){
-    //Declaration of variables
-    Boolean results;
+    
+    public static Boolean checkPasswordComplexity(String regPassword){
+//Declaration of variables
     String password;
-    int i;
-    
-    Scanner myRegister = new Scanner(System.in);
-    System.out.println("Enter a password: ");
-    password = myRegister.nextLine().trim();
-    
+    password = regPassword;
+  
     //Check if password meets criteria
     if (password.length() <= 7){
      return false;
     }
-    Boolean Uppercase;
-    Boolean digit;
-    Boolean specialChar;
+    Boolean Uppercase = false;
+    Boolean digit = false;
+    Boolean specialChar = false;
     
     for (char c : password.toCharArray()){
     if (Character.isUpperCase(c)){
@@ -109,6 +107,6 @@ public class Progpoetasy {
         specialChar = true;
     }
     }
-    return digit && specialChar && uppercase;
+    return digit && specialChar && Uppercase;
     }
 }
