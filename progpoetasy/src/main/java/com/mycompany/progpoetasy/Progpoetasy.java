@@ -130,6 +130,16 @@ public class Progpoetasy {
     String logUser = loginUsername;
     String regUser= regUsername;
     String logPass = loginPassword;
-    String
+    String regPass = regPassword;
+    Boolean password = false;
+    Boolean username = false;
+    
+    if (logUser.equals(regUser)){
+    username = true;
+    }
+    if (logPass.equals(regPass)){
+    password = true;
+    }
+    return password && username;
     }
 }
