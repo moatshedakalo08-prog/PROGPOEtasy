@@ -1,30 +1,32 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package com.mycompany.progpoetasy;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  *
  * @author Student
  */
 public class Progpoetasy {
+;
 
     public static void main(String[] args) {
       
     //Declarations of variables
     String name;
     String lastName;
-    
+    String regPassword = null;
+    String regUsername =null;
     //Use a Scanner to acceptr user registration input
     Scanner myRegister = new Scanner(System.in);
     System.out.println("Enter your first name: ");
     name = myRegister.nextLine().trim();
     System.out.println("Enter your last name: ");
     lastName = myRegister.nextLine().trim();
-    String regUsername;
+    
     //Registering the a correctly formatted usename
     for (int i=0; i != -1; i++){
         System.out.print("Enter a username: ");
@@ -41,15 +43,14 @@ public class Progpoetasy {
             System.out.print("and is no more than 5 characters in length.");
         }
     }
-    String regPassword;
     //registering correctly formatted password
     for (int i =0; i !=-1; i++){
-         System.out.println("Enter a password: ");
+        System.out.println("Enter a password: ");
         regPassword = myRegister.nextLine().trim();
     
         Boolean password = checkPasswordComplexity(regPassword);
         if (password == true){
-            System.out.print("Password successfully captured ");
+            System.out.println("Password successfully captured ");
             break;
         }
         else {
@@ -58,7 +59,22 @@ public class Progpoetasy {
             System.out.print("contains atleast 8 characters, ");
             System.out.print("a capital letter, ");
             System.out.print("a number, ");
-            System.out.println("and a special character.");
+            System.out.println("and a special character. ");
+        }
+    } 
+    String phonenumber;
+    for (int i =0; i !=-1; i++){
+        System.out.println("Enter your cellphone number: ");
+        phonenumber = myRegister.nextLine().trim();
+    
+        Boolean cellPhone= checkCellPhoneNumber(phonenumber);
+        if (cellPhone == true){
+            System.out.println("Cell phone number successfully captured ");
+            break;
+        }
+        else {
+            System.out.println("Phone number not correctly formatteed ror is missing international code. ");
+           
         }
     }
     String loginUsername;
@@ -70,7 +86,7 @@ public class Progpoetasy {
         loginPassword = myRegister.nextLine().trim();
         Boolean login = loginUser(regUsername, regPassword, loginUsername, loginPassword);
         if (login == true){
-            returnLoginstatus();
+            returnLoginstatus(name, lastName);
             break;
         }
         else {
@@ -125,6 +141,21 @@ public class Progpoetasy {
     }
     return digit && specialChar && Uppercase;
     }
+     public static Pattern getSAPhonePattern()  {
+     return Pattern.compile("^(?:\\+27|27|0)[6-8][0-9]{8}$");
+     }
+    //Phone validation structure from google
+    public static Boolean checkCellPhoneNumber(String phonenumber){
+        //declaration of variables
+    String cell = phonenumber;
+    
+    if (cell == null){
+     return false;
+    }
+    String phone = cell.replaceAll("[\\s\\=\\(\\)]", "");
+    
+    return getSAPhonePattern().matcher(phone).matches();
+    }
     public static Boolean loginUser(String regUsername, String regPassword, String loginUsername, String loginPassword){
     //Declaration of variables
     String logUser = loginUsername;
@@ -141,5 +172,12 @@ public class Progpoetasy {
     password = true;
     }
     return password && username;
+    }
+    public static void returnLoginstatus(String name, String lastName){
+        //declaration of variables
+        String userName = name;
+        String userSurname = lastName;
+        System.out.println("welcome " +userName+ " " +userSurname+ "it is great to see you again.");
+    
     }
 }
