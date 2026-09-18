@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ProgpoetasyTest {
     
     public ProgpoetasyTest() {
-        
+    ]    
      @Test 
      public void testCheckUserName(){
         Progpoetasy register = new Progpoetasy();
@@ -28,7 +28,8 @@ public class ProgpoetasyTest {
         actual = register.checkUserName("kyl_1");
         assertEquals(expected, actual);
      }  
-      @Test public void testcheckPasswordComplexity()
+      @Test 
+      public void testCheckPasswordComplexity()
       {
         Progpoetasy register = new Progpoetasy();
         Boolean expected = true;
@@ -36,15 +37,32 @@ public class ProgpoetasyTest {
         actual = register.checkPasswordComplexity("Ch&&sec@ke99!");
         assertEquals(expected, actual);
      }  
-      @Test public void testcheckPasswordComplexity(){
+      @Test 
+      public void testCheckPasswordComplexity_Invalid(){
       Progpoetasy register = new Progpoetasy();
-        Boolean expected = true;
+        Boolean expected = false;
         Boolean actual;
         actual = register.checkPasswordComplexity("password");
         assertEquals(expected, actual);
     }
-      
+      @Test 
+      public void testCheckCellPhoneNumber(){
+      Progpoetasy register = new Progpoetasy();
+        Boolean expected = true;
+        Boolean actual;
+        actual = register.checkPasswordComplexity("+27838968976");
+        assertEquals(expected, actual);
     }
+      @Test 
+      public void testCheckCellPhoneNumber_Invalid(){
+      Progpoetasy register = new Progpoetasy();
+        Boolean expected = false;
+        Boolean actual;
+        actual = register.checkCellPhoneNumber("08966553");
+        assertEquals(expected, actual);
+    }
+      
+    
     }
     
     @BeforeAll
