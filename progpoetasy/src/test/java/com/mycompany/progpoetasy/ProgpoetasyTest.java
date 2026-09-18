@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+
 /**
  *
  * @author Student
@@ -18,6 +19,32 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ProgpoetasyTest {
     
     public ProgpoetasyTest() {
+        
+     @Test 
+     public void testCheckUserName(){
+        Progpoetasy register = new Progpoetasy();
+        Boolean expected = true;
+        Boolean actual;
+        actual = register.checkUserName("kyl_1");
+        assertEquals(expected, actual);
+     }  
+      @Test public void testcheckPasswordComplexity()
+      {
+        Progpoetasy register = new Progpoetasy();
+        Boolean expected = true;
+        Boolean actual;
+        actual = register.checkPasswordComplexity("Ch&&sec@ke99!");
+        assertEquals(expected, actual);
+     }  
+      @Test public void testcheckPasswordComplexity(){
+      Progpoetasy register = new Progpoetasy();
+        Boolean expected = true;
+        Boolean actual;
+        actual = register.checkPasswordComplexity("password");
+        assertEquals(expected, actual);
+    }
+      
+    }
     }
     
     @BeforeAll
@@ -37,15 +64,6 @@ public class ProgpoetasyTest {
     }
 
     /**
-     * Test of main method, of class Progpoetasy.
-     */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Progpoetasy.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+  
+   
     
-}
