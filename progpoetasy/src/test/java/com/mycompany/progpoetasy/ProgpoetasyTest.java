@@ -45,7 +45,7 @@ public class ProgpoetasyTest {
     public void testCheckCellPhoneNumber_Valid(){
         Boolean expected = true;
         Boolean actual;
-        actual = Progpoetasy.checkPasswordComplexity("+27838968976");
+        actual = Progpoetasy.checkCellPhoneNumber("+27838968976");
         assertEquals(expected, actual);
     }
     @Test
@@ -59,7 +59,7 @@ public class ProgpoetasyTest {
     @BeforeAll
     public static void setUpClass() {
     }
-}
+
     @AfterAll
     public static void tearDownClass() {
     }
@@ -72,7 +72,7 @@ public class ProgpoetasyTest {
     public void tearDown() {
     }
 
-    /**
+    
   
    
-    
+}   
