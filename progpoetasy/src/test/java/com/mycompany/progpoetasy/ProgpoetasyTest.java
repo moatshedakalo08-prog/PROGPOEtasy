@@ -19,56 +19,47 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ProgpoetasyTest {
     
     public ProgpoetasyTest() {
-    ]    
-     @Test 
-     public void testCheckUserName(){
-        Progpoetasy register = new Progpoetasy();
+    }
+    @Test 
+    public void testCheckUserName(){
         Boolean expected = true;
         Boolean actual;
-        actual = register.checkUserName("kyl_1");
+        actual = Progpoetasy.checkUserName("kyl_1");
         assertEquals(expected, actual);
      }  
-      @Test 
-      public void testCheckPasswordComplexity()
-      {
-        Progpoetasy register = new Progpoetasy();
+    @Test
+      public void testCheckPasswordComplexity_Valid(){
         Boolean expected = true;
         Boolean actual;
-        actual = register.checkPasswordComplexity("Ch&&sec@ke99!");
+        actual = Progpoetasy.checkPasswordComplexity("Ch&&sec@ke99!");
         assertEquals(expected, actual);
      }  
-      @Test 
-      public void testCheckPasswordComplexity_Invalid(){
-      Progpoetasy register = new Progpoetasy();
+    @Test 
+        public void testCheckPasswordComplexity_Invalid(){
         Boolean expected = false;
         Boolean actual;
-        actual = register.checkPasswordComplexity("password");
+        actual = Progpoetasy.checkPasswordComplexity("password");
         assertEquals(expected, actual);
     }
-      @Test 
-      public void testCheckCellPhoneNumber(){
-      Progpoetasy register = new Progpoetasy();
+    @Test
+    public void testCheckCellPhoneNumber_Valid(){
         Boolean expected = true;
         Boolean actual;
-        actual = register.checkPasswordComplexity("+27838968976");
+        actual = Progpoetasy.checkPasswordComplexity("+27838968976");
         assertEquals(expected, actual);
     }
-      @Test 
-      public void testCheckCellPhoneNumber_Invalid(){
-      Progpoetasy register = new Progpoetasy();
+    @Test
+    public void testCheckCellPhoneNumber_Invalid(){
         Boolean expected = false;
         Boolean actual;
-        actual = register.checkCellPhoneNumber("08966553");
+        actual = Progpoetasy.checkCellPhoneNumber("08966553");
         assertEquals(expected, actual);
-    }
-      
-    
     }
     
     @BeforeAll
     public static void setUpClass() {
     }
-    
+}
     @AfterAll
     public static void tearDownClass() {
     }
