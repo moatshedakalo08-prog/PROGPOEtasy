@@ -94,6 +94,33 @@ public class Progpoetasy {
             
         }
     }
+    int option;
+    option = 0;
+    for (int i = 0; option != 3; i++){
+    Scanner myLogin = new Scanner(System.in);
+    System.out.println("Select a feature to use:");
+    System.out.println("Option 1) Send message");
+    System.out.println("Option 2) Show recently sent messages");
+    System.out.println("Option 3) Quit");
+    option = myLogin.nextInt();
+    
+    switch (option){
+        case 1: {
+        System.out.println("Enter the nuber of messges you want to send");
+        int numMessage = myLogin.nextInt();
+        MessageChat chat = new MessageChat(numMessage);
+        }
+        break;
+        case 2: {
+        System.out.println("Coming soon");
+        }
+        break;
+        case 3:{
+         option = 3;
+        }
+        break;
+    }
+    }
     }
     //Check if username is correctly formatted
     public static Boolean checkUserName(String regUsername){
