@@ -26,7 +26,7 @@ public class MessageChat {
         Scanner myChat = new Scanner(System.in);
         for (int k=0; k != -1; k++){
         System.out.print("Enter a message: ");
-        message[i] = myChat.nextLine().trim();
+        message[i] = myChat.nextLine();
         Boolean text = checkMessage(message[i]);
         if (text == true){
             System.out.println("Message sent ");
@@ -57,7 +57,8 @@ public class MessageChat {
             System.out.println("Phone number of the recipient is not correctly formatteed or is missing international code. ");   
         }
     }
-    }
+    hash[i] = createMessageHash(id[i], message[i]);
+   }
  }
  
  public Boolean checkMessage(String message){
@@ -89,5 +90,22 @@ public class MessageChat {
     
     return getSAPhonePattern().matcher(cell).matches();
     }
+  public String createMessageHash(String id, String text){
+      String textID = id;
+      String chat = text;
+      String firstTwo;
+      int i = 1;
+      String lastOne;
+      String firstOne;
+      String result;
+    firstTwo = textID.substring(0, 2);
+    // google reference
+    int lastWordIndex = chat.lastIndexOf(' ');
+    lastOne = chat.substring(lastWordIndex + 1).toUpperCase();
+    firstOne = chat.trim().split("\\s+")[0].toUpperCase();
+    result = firstTwo + i + ':'+ firstOne + lastOne;
+    
+    return result;
+  }
 
 }
