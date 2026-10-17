@@ -58,6 +58,7 @@ public class MessageChat {
         }
     }
     hash[i] = createMessageHash(id[i], message[i]);
+    String status = SentMessage();
    }
  }
  
@@ -105,6 +106,31 @@ public class MessageChat {
     firstOne = chat.trim().split("\\s+")[0].toUpperCase();
     result = firstTwo + i + ':'+ firstOne + lastOne;
     
+    return result;
+  }
+  public String SentMessage(){
+   //declarations 
+   int  decision;
+   String result;
+   result = null;
+      Scanner myMessage = new Scanner(System.in);
+       System.out.println("Select a feature to use:");
+    System.out.println("Option 0) Delete message");
+    System.out.println("Option 2) Send message");
+    System.out.println("Option 3) Store message");
+    decision = myMessage.nextInt();
+    
+    switch (decision){
+        case 0 -> {
+       result = "Delete";
+        }
+        case 2 -> {
+        result = "Send";
+        }
+        case 3 -> {
+         result = "Store";
+        }
+    }
     return result;
   }
 
