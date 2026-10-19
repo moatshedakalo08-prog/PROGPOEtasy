@@ -24,7 +24,7 @@ public class MessageChat {
     arraySize = numTexts;
    }
  public void message (int arraySize){
-     for (int i = 1 ; i <= arraySize; i++){
+     for (int i = 0 ; i <= arraySize-1; i++){
         Scanner myChat = new Scanner(System.in);
         for (int k=0; k != -1; k++){
         System.out.print("Enter a message: ");
@@ -148,7 +148,7 @@ public class MessageChat {
   }
  public int returnTotalMessages(int i){
  int k;
- k = i;
+ k = i +1;
  return k;
  }
  public static void saveMessageData(String filePath, String text, String msgId, String msgHash) {
