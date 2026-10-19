@@ -84,7 +84,8 @@ public class Progpoetasy {
         loginUsername = myRegister.nextLine().trim();
         System.out.println("Enter your registered password: ");
         loginPassword = myRegister.nextLine().trim();
-        Boolean login = loginUser(regUsername, regPassword, loginUsername, loginPassword);
+        login mylog = new login(regUsername, regPassword, loginUsername, loginPassword);
+        Boolean login = mylog.loginUser(regUsername, regPassword, loginUsername, loginPassword);
         if (login == true){
             returnLoginstatus(name, lastName);
             break;
@@ -176,23 +177,7 @@ public class Progpoetasy {
     
     return getSAPhonePattern().matcher(phone).matches();
     }
-    public static Boolean loginUser(String regUsername, String regPassword, String loginUsername, String loginPassword){
-    //Declaration of variables
-    String logUser = loginUsername;
-    String regUser= regUsername;
-    String logPass = loginPassword;
-    String regPass = regPassword;
-    Boolean password = false;
-    Boolean username = false;
-    
-    if (logUser.equals(regUser)){
-    username = true;
-    }
-    if (logPass.equals(regPass)){
-    password = true;
-    }
-    return password && username;
-    }
+   
     public static void returnLoginstatus(String name, String lastName){
         //declaration of variables
         String userName = name;
