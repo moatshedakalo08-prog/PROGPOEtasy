@@ -62,6 +62,8 @@ public class MessageChat {
     if( "send".equals(status)){
     printMessages(message[i]);
     }
+    int msgs = returnTotalMessages(i);
+    System.out.println("The total nybeer of messages entered is " +msgs);
    }
  }
  
@@ -141,5 +143,9 @@ public class MessageChat {
   String msg= message;
   System.out.println(msg);
   }
-
+ public int returnTotalMessages(int i){
+ int k;
+ k = i;
+ return k;
+ }
 }
