@@ -59,6 +59,9 @@ public class MessageChat {
     }
     hash[i] = createMessageHash(id[i], message[i]);
     String status = SentMessage();
+    if( "send".equals(status)){
+    printMessages(message[i]);
+    }
    }
  }
  
@@ -132,6 +135,11 @@ public class MessageChat {
         }
     }
     return result;
+  }
+  public void printMessages( String message){
+  //Declarations
+  String msg= message;
+  System.out.println(msg);
   }
 
 }
