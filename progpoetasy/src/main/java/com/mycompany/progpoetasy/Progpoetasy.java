@@ -105,20 +105,18 @@ public class Progpoetasy {
     option = myLogin.nextInt();
     
     switch (option){
-        case 1: {
+        case 1 -> {
         System.out.println("Enter the nuber of messges you want to send");
         int numMessage = myLogin.nextInt();
         MessageChat chat = new MessageChat(numMessage);
+        chat.message(numMessage);
         }
-        break;
-        case 2: {
+        case 2 -> {
         System.out.println("Coming soon");
         }
-        break;
-        case 3:{
+        case 3 -> {
          option = 3;
         }
-        break;
     }
     }
     }
@@ -134,12 +132,7 @@ public class Progpoetasy {
         if (username.length() >= 6){
             return false;
         }
-        if (username.contains("_")) {
-         return true;
-        } 
-        else {
-          return false;
-        }
+        return username.contains("_");
     }
     
     public static Boolean checkPasswordComplexity(String regPassword){
