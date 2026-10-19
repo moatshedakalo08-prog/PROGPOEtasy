@@ -6,7 +6,9 @@ package com.mycompany.progpoetasy;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.regex.Pattern;
-
+import org.json.JSONObject;
+import java.io.FileWriter;
+import java.io.IOException;
 /**
  *
  * @author Student
@@ -64,6 +66,7 @@ public class MessageChat {
     }
     int msgs = returnTotalMessages(i);
     System.out.println("The total nybeer of messages entered is " +msgs);
+    saveMessageData("messages.json",message[i], id[i], hash[i]);
    }
  }
  
@@ -148,4 +151,20 @@ public class MessageChat {
  k = i;
  return k;
  }
+ public static void saveMessageData(String filePath, String text, String msgId, String msgHash) {
+    // 1. Pack the five strings into a JSON object
+    JSONObject json = new JSONObject();
+    
+    json.put("text", text);
+    json.put("messageId", msgId);
+    json.put("messageHash", msgHash);
+    
+
+    // 2. Write the JSON object to the file (4 spaces indentation for readability)
+    try (FileWriter writer = new FileWriter(filePath)) {
+        writer.write(json.toString(4)); 
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 }
