@@ -164,7 +164,6 @@ public class MessageChat {
     try (FileWriter writer = new FileWriter(filePath)) {
         writer.write(json.toString(4)); 
     } catch (IOException e) {
-        e.printStackTrace();
     }
 }
 }
