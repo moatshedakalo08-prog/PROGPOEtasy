@@ -15,52 +15,50 @@ import java.io.IOException;
  */
 public class MessageChat {
     //Declarations
-    int arraySize = 0;
-    String[] id = new String[arraySize];
-    String[] message= new String[arraySize];
-    String[] hash= new String[arraySize];
-   
+    int arraySize;
+    String[] id;
+    String[] message;
+    String[] hash;
+   //use constructor to assign values to attributes
     public MessageChat(int numTexts){
-    arraySize = numTexts;
+    this.arraySize = numTexts;
+    this.id = new String[arraySize];
+    this.message= new String[arraySize];
+    this.hash= new String[arraySize];
    }
- public void message (int arraySize){
-     for (int i = 0 ; i <= arraySize-1; i++){
-        Scanner myChat = new Scanner(System.in);
-        for (int k=0; k != -1; k++){
+    //the core funtion that also allows the process tro be looped
+ public void message (){
+      Scanner myChat = new Scanner(System.in);
+     for (int i = 0 ; i < arraySize; i++){
         System.out.print("Enter a message: ");
         message[i] = myChat.nextLine();
-        Boolean text = checkMessage(message[i]);
-        if (text == true){
-            System.out.println("Message sent ");
-            break;
+       
+        if (checkMessage(message[i])){
+             System.out.println("Message sent ");
         }
         else{
-            System.out.println("Please enter a message of less than 250 characters");
+           System.out.println("Please enter a message of less than 250 characters");
+            continue;
         }
-      }
-      for (int k=0; k != -1; k++){
+      
+      
        //code line from google
        id[i] = UUID.randomUUID().toString().substring(0, 8);
-        Boolean textID = checkMessageID(id[i]);
-        if (textID == true){
-            break;
-        }
-      }
-    String recipient;
-    for (int k =0; k !=-1; k++){
+      
         System.out.println("Enter the cellphone number for the recipient: ");
-        recipient = myChat.nextLine().trim();
-    
-        Boolean cell= checkRecipientCell(recipient);
-        if (cell == true){
-            break;
+        String recipient = myChat.nextLine().trim();
+  
+        if (checkRecipientCell(recipient)){
+           System.out.println("Phone number of the recipient is correctly formatteed "); 
         }
         else {
-            System.out.println("Phone number of the recipient is not correctly formatteed or is missing international code. ");   
+            System.out.println("Phone number of the recipient is not correctly formatteed or is missing international code. "); 
+            continue;
         }
-    }
+    
     hash[i] = createMessageHash(id[i], message[i]);
-    String status = SentMessage();
+    
+    String status = SentMessage(myChat);
     if( "send".equals(status)){
     printMessages(message[i]);
     }
@@ -68,6 +66,7 @@ public class MessageChat {
     System.out.println("The total nybeer of messages entered is " +msgs);
     saveMessageData("messages.json",message[i], id[i], hash[i]);
    }
+     myChat.close();
  }
  
  public Boolean checkMessage(String message){
@@ -76,7 +75,7 @@ public class MessageChat {
   if (text == null){
       return false;
   }
-  return text.length() <= 250;
+  return text.length() <= 250 && !message.isEmpty();
  }
  public Boolean checkMessageID (String textID){
   String messageID = textID;
