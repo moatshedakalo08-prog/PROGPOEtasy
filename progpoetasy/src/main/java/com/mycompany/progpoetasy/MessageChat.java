@@ -65,7 +65,7 @@ public class MessageChat {
                 printMessages(message[i]);
                 }
             int msgs = returnTotalMessages(i);
-            System.out.println("The total nybeer of messages entered is " +msgs);
+            System.out.println("The total number of messages entered is " +(msgs+1));
             saveMessageData("messages.json",message[i], id[i], hash[i]);
             }    
         }
@@ -115,7 +115,7 @@ public class MessageChat {
     public String SentMessage() {
         Scanner myMessage = new Scanner(System.in);
         System.out.println("\nSelect a feature to use:");
-        System.out.println("Option 0) Delete message");
+        System.out.println("Option 1) Delete message");
         System.out.println("Option 2) Send message");
         System.out.println("Option 3) Store message");
         System.out.print("Selection: ");
