@@ -61,7 +61,7 @@ public class MessageChat {
         hash[i] = createMessageHash(id[i], message[i]);
                 
         String status = SentMessage();
-            if( "send".equals(status)){
+            if( "Send".equalsIgnoreCase(status)){
                 printMessages(message[i]);
                 }
             int msgs = returnTotalMessages(i);
@@ -124,8 +124,8 @@ public class MessageChat {
         myMessage.nextLine(); // Clear scanner buffer trailing newline
 
         return switch (decision) {
-            case 1 -> "Delete";
-            case 2 -> "send";
+            case 0 -> "Delete";
+            case 2 -> "Send";
             case 3 -> "Store";
             default -> "Unknown";
         };
