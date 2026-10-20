@@ -28,45 +28,45 @@ public class MessageChat {
    }
     //the core funtion that also allows the process tro be looped
  public void message (){
-      Scanner myChat = new Scanner(System.in);
-     for (int i = 0 ; i < arraySize; i++){
-        System.out.print("Enter a message: ");
-        message[i] = myChat.nextLine();
-       
-        if (checkMessage(message[i])){
-             System.out.println("Message sent ");
-        }
-        else{
-           System.out.println("Please enter a message of less than 250 characters");
-            continue;
-        }
-      
-      
-       //code line from google
-       id[i] = UUID.randomUUID().toString().substring(0, 8);
-      
+     Scanner myChat = new Scanner(System.in); {
+        for (int i = 0 ; i < arraySize; i++){
+            System.out.print("Enter a message: ");
+            message[i] = myChat.nextLine();
+                
+            if (checkMessage(message[i])){
+                System.out.println("Message sent ");
+                }
+            else{
+                System.out.println("Please enter a message of less than 250 characters");
+                continue;
+                }
+                
+                
+         //code line from google
+        id[i] = UUID.randomUUID().toString().substring(0, 8);
+                
         System.out.println("Enter the cellphone number for the recipient: ");
         String recipient = myChat.nextLine().trim();
-  
-        if (checkRecipientCell(recipient)){
-           System.out.println("Phone number of the recipient is correctly formatteed "); 
+                
+            if (checkRecipientCell(recipient)){
+                System.out.println("Phone number of the recipient is correctly formatteed ");
+                }
+            else {
+                System.out.println("Phone number of the recipient is not correctly formatteed or is missing international code. ");
+                continue;
+                }
+                
+        hash[i] = createMessageHash(id[i], message[i]);
+                
+        String status = SentMessage(myChat);
+            if( "send".equals(status)){
+                printMessages(message[i]);
+                }
+            int msgs = returnTotalMessages(i);
+            System.out.println("The total nybeer of messages entered is " +msgs);
+            saveMessageData("messages.json",message[i], id[i], hash[i]);
+            }    
         }
-        else {
-            System.out.println("Phone number of the recipient is not correctly formatteed or is missing international code. "); 
-            continue;
-        }
-    
-    hash[i] = createMessageHash(id[i], message[i]);
-    
-    String status = SentMessage(myChat);
-    if( "send".equals(status)){
-    printMessages(message[i]);
-    }
-    int msgs = returnTotalMessages(i);
-    System.out.println("The total nybeer of messages entered is " +msgs);
-    saveMessageData("messages.json",message[i], id[i], hash[i]);
-   }
-     myChat.close();
  }
  
  public Boolean checkMessage(String message){
@@ -98,71 +98,53 @@ public class MessageChat {
     
     return getSAPhonePattern().matcher(cell).matches();
     }
-  public String createMessageHash(String id, String text){
-      String textID = id;
-      String chat = text;
-      String firstTwo;
-      int i = 1;
-      String lastOne;
-      String firstOne;
-      String result;
-    firstTwo = textID.substring(0, 2);
-    // google reference
-    int lastWordIndex = chat.lastIndexOf(' ');
-    lastOne = chat.substring(lastWordIndex + 1).toUpperCase();
-    firstOne = chat.trim().split("\\s+")[0].toUpperCase();
-    result = firstTwo + i + ':'+ firstOne + lastOne;
-    
-    return result;
-  }
-  public String SentMessage(){
-   //declarations 
-   int  decision;
-   String result;
-   result = null;
-      Scanner myMessage = new Scanner(System.in);
-       System.out.println("Select a feature to use:");
-    System.out.println("Option 0) Delete message");
-    System.out.println("Option 2) Send message");
-    System.out.println("Option 3) Store message");
-    decision = myMessage.nextInt();
-    
-    switch (decision){
-        case 0 -> {
-       result = "Delete";
-        }
-        case 2 -> {
-        result = "Send";
-        }
-        case 3 -> {
-         result = "Store";
-        }
-    }
-    return result;
-  }
-  public void printMessages( String message){
-  //Declarations
-  String msg= message;
-  System.out.println(msg);
-  }
- public int returnTotalMessages(int i){
- int k;
- k = i +1;
- return k;
- }
- public static void saveMessageData(String filePath, String text, String msgId, String msgHash) {
-    // 1. Pack the five strings into a JSON object
-    JSONObject json = new JSONObject();
-    
-    json.put("text", text);
-    json.put("messageId", msgId);
-    json.put("messageHash", msgHash);
-    
+  public String createMessageHash(String id, String text) {
+        String firstTwo = id.substring(0, 2);
+        int placeholderIndex = 1;
 
-    // 2. Write the JSON object to the file (4 spaces indentation for readability)
-    try (FileWriter writer = new FileWriter(filePath)) {
-        writer.write(json.toString(4)); 
-    } catch (IOException e) {
+        int lastWordIndex = text.lastIndexOf(' ');
+        String lastOne = (lastWordIndex == -1) ? text.toUpperCase() : text.substring(lastWordIndex + 1).toUpperCase();
+        
+        String firstOne = text.trim().split("\\s+")[0].toUpperCase();
+        
+        return firstTwo + placeholderIndex + ":" + firstOne + lastOne;
     }
-}
+
+    public String SentMessage(Scanner myMessage) {
+        System.out.println("\nSelect a feature to use:");
+        System.out.println("Option 0) Delete message");
+        System.out.println("Option 2) Send message");
+        System.out.println("Option 3) Store message");
+        System.out.print("Selection: ");
+        
+        int decision = myMessage.nextInt();
+        myMessage.nextLine(); // Clear scanner buffer trailing newline
+
+        return switch (decision) {
+            case 0 -> "Delete";
+            case 2 -> "Send";
+            case 3 -> "Store";
+            default -> "Unknown";
+        };
+    }
+
+    public void printMessages(String message) {
+        System.out.println("Message content: " + message);
+    }
+
+    public int returnTotalMessages(int i) {
+        return i + 1;
+    }
+
+    public static void saveMessageData(String filePath, String text, String msgId, String msgHash) {
+        JSONObject json = new JSONObject();
+        json.put("text", text);
+        json.put("messageId", msgId);
+        json.put("messageHash", msgHash);
+
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            writer.write(json.toString(4) + "\n");
+        } catch (IOException e) {
+        }
+    }
 }
