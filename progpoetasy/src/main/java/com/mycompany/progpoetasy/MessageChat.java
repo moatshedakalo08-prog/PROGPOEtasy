@@ -38,6 +38,7 @@ public class MessageChat {
                 }
             else{
                 System.out.println("Please enter a message of less than 250 characters");
+                i--;
                 continue;
                 }
                 
@@ -53,6 +54,7 @@ public class MessageChat {
                 }
             else {
                 System.out.println("Phone number of the recipient is not correctly formatteed or is missing international code. ");
+                i--;
                 continue;
                 }
                 
@@ -123,8 +125,8 @@ public class MessageChat {
 
         return switch (decision) {
             case 0 -> "Delete";
-            case 2 -> "Send";
-            case 3 -> "Store";
+            case 1 -> "send";
+            case 2 -> "Store";
             default -> "Unknown";
         };
     }
