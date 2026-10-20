@@ -124,9 +124,9 @@ public class MessageChat {
         myMessage.nextLine(); // Clear scanner buffer trailing newline
 
         return switch (decision) {
-            case 0 -> "Delete";
-            case 1 -> "send";
-            case 2 -> "Store";
+            case 1 -> "Delete";
+            case 2 -> "send";
+            case 3 -> "Store";
             default -> "Unknown";
         };
     }
@@ -136,7 +136,7 @@ public class MessageChat {
     }
 
     public int returnTotalMessages(int i) {
-        return i + 1;
+        return i;
     }
 
     public static void saveMessageData(String filePath, String text, String msgId, String msgHash) {
