@@ -104,13 +104,18 @@ public class Progpoetasy {
     System.out.println("Option 2) Show recently sent messages");
     System.out.println("Option 3) Quit");
     option = myLogin.nextInt();
-    
+    System.out.println(" Welcome to Tasy's Chat box");
     switch (option){
         case 1 -> {
         System.out.println("Enter the nuber of messges you want to send");
         int numMessage = myLogin.nextInt();
-        MessageChat chat = new MessageChat(numMessage);
-        chat.message(numMessage);
+        // Instantiation of the class
+        MessageChat chatSystem = new MessageChat(numMessage);
+        chatSystem.message();
+        
+        System.out.println("\n=== Process Finished Successfully ===");
+        myLogin.close();
+    
         }
         case 2 -> {
         System.out.println("Coming soon");
