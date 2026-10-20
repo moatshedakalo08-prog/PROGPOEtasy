@@ -58,7 +58,7 @@ public class MessageChat {
                 
         hash[i] = createMessageHash(id[i], message[i]);
                 
-        String status = SentMessage(myChat);
+        String status = SentMessage();
             if( "send".equals(status)){
                 printMessages(message[i]);
                 }
@@ -110,7 +110,8 @@ public class MessageChat {
         return firstTwo + placeholderIndex + ":" + firstOne + lastOne;
     }
 
-    public String SentMessage(Scanner myMessage) {
+    public String SentMessage() {
+        Scanner myMessage = new Scanner(System.in);
         System.out.println("\nSelect a feature to use:");
         System.out.println("Option 0) Delete message");
         System.out.println("Option 2) Send message");
