@@ -15,9 +15,15 @@ import java.io.IOException;
  */
 public class MessageChat {
     //Declarations
+    int counterOne;
+    int counterTwo;
+    int counterThree;
     int arraySize;
     String[] id;
     String[] message;
+    String[] sentMessage;
+    String[] storedMessage;
+    String[] deletedMessage;
     String[] hash;
    //use constructor to assign values to attributes
     public MessageChat(int numTexts){
@@ -25,6 +31,12 @@ public class MessageChat {
     this.id = new String[arraySize];
     this.message= new String[arraySize];
     this.hash= new String[arraySize];
+    this.counterOne = 0;
+    this.counterTwo = 0;
+    this.counterThree = 0;
+    this.sentMessage= new String[counterOne + 1];
+    this.storedMessage= new String[counterTwo + 1];
+    this.deletedMessage= new String[counterThree + 1];
    }
     //the core funtion that also allows the process tro be looped
  public void message (){
@@ -63,10 +75,20 @@ public class MessageChat {
         String status = SentMessage();
             if( "Send".equalsIgnoreCase(status)){
                 printMessages(message[i]);
+                sentMessage[counterOne] = message[i];
+                counterOne = counterOne + 1;
                 }
+            else if( "Store".equalsIgnoreCase(status)){
+            storedMessage[counterTwo] = message[i];
+            counterTwo = counterTwo + 1;
+            }
+            else if( "Delete".equalsIgnoreCase(status)){
+            deletedMessage[counterThree] = message[i];
+            counterThree = counterThree + 1;
+            } 
             int msgs = returnTotalMessages(i);
             System.out.println("The total number of messages entered is " +(msgs+1));
-            saveMessageData("messages.json",message[i], id[i], hash[i]);
+            saveMessageData("messages.json",message[i], id[i], hash[i],sentMessage[counterOne],storedMessage[counterTwo],storedMessage[counterThree]);
             }    
         }
  }
@@ -139,11 +161,17 @@ public class MessageChat {
         return i;
     }
 
-    public static void saveMessageData(String filePath, String text, String msgId, String msgHash) {
+    public static void saveMessageData(String filePath, String text, String msgId, String msgHash, String sentMsg, String storedMsg, String deletedMsg) {
         JSONObject json = new JSONObject();
         json.put("text", text);
         json.put("messageId", msgId);
         json.put("messageHash", msgHash);
+        json.put("sentMsg", sentMsg);
+        json.put("storedMsg", storedMsg);
+        json.put("deletedMsg", deletedMsg);
+      
+        
+        
 
         try (FileWriter writer = new FileWriter(filePath, true)) {
             writer.write(json.toString(4) + "\n");
