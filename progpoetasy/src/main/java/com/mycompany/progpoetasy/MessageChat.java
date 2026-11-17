@@ -237,7 +237,7 @@ public class MessageChat {
             String searchId = report.nextLine().trim();
             boolean foundId = false;
             for(int i = 0; i < counterTwo; i++){
-                if(storedIds[i] != null && storedIds[i].equals(searchId)){
+              if(storedIds[i] != null && storedIds[i].equals(searchId)){
                 System.out.println("Recipient: " + storedRecipients[i]);
                 System.out.println("Message: " + storedMessage[i]);
                 foundId = true;
@@ -245,34 +245,32 @@ public class MessageChat {
             }
             if(!foundId) System.out.println("Message ID not found.");
             }
-
-        case "d" -> {
-            // d. search by recipient
+        //Reference from google
+        case "d" -> { //SEARCH USING RECIEPIENT
             System.out.print("Enter recipient number: ");
-            String searchRec = report.nextLine().trim();
-            boolean foundRec = false;
+            String searchNum = report.nextLine().trim();
+            boolean foundNum = false;
             for(int i = 0; i < counterTwo; i++){
-                if(storedRecipients[i] != null && storedRecipients[i].equals(searchRec)){
-                    System.out.println("Message: " + storedMessage[i]);
-                    foundRec = true;
+              if(storedRecipients[i] != null && storedRecipients[i].equals(searchNum)){
+                System.out.println("Message: " + storedMessage[i]);
+                foundNum = true;
                 }
             }
-            if(!foundRec) System.out.println("No messages for that recipient.");
+            if(!foundNum) System.out.println("No messages for that recipient.");
             }
 
-        case "e" -> {
-            // e. delete by hash
+        case "e" -> { //DELETE USING HASH
             System.out.print("Enter Message Hash to delete: ");
             String searchHash = report.nextLine().trim();
             boolean deleted = false;
             for(int i = 0; i < counterTwo; i++){
                 if(storedHashes[i] != null && storedHashes[i].equals(searchHash)){
-                    // shift everything left to close the gap
-                    for(int j = i; j < counterTwo - 1; j++){
-                        storedMessage[j] = storedMessage[j+1];
-                        storedIds[j] = storedIds[j+1];
-                        storedHashes[j] = storedHashes[j+1];
-                        storedRecipients[j] = storedRecipients[j+1];
+                    //googlr referencing on how to close the gap
+                    for(int k = i; k < counterTwo - 1; k++){
+                     storedMessage[k] = storedMessage[k+1];
+                     storedIds[k] = storedIds[k+1];
+                     storedHashes[k] = storedHashes[k+1];
+                     storedRecipients[k] = storedRecipients[k+1];
                     }
                     counterTwo--;
                     System.out.println("Message with hash " + searchHash + " deleted.");
@@ -283,22 +281,21 @@ public class MessageChat {
             if(!deleted) System.out.println("Hash not found.");
             }
 
-        case "f" -> {
-            // f. full report
+        case "f" -> { // DISPLAYING THE REPORT
             if(counterTwo == 0){
-                System.out.println("No stored messages.");
+             System.out.println("No stored messages.");
             } 
             else {
-                for(int i = 0; i < counterTwo; i++){
-                    System.out.println("--- Message " + (i+1) + " ---");
-                    System.out.println("ID: " + storedIds[i]);
-                    System.out.println("Hash: " + storedHashes[i]);
-                    System.out.println("Sender: " + senderCell);
-                    System.out.println("Recipient: " + storedRecipients[i]);
-                    System.out.println("Message: " + storedMessage[i]);
+              for(int i = 0; i < counterTwo; i++){
+                System.out.println("--- Message " + (i+1) + " ---");
+                System.out.println("ID: " + storedIds[i]);
+                System.out.println("Hash: " + storedHashes[i]);
+                System.out.println("Sender: " + senderCell);
+                System.out.println("Recipient: " + storedRecipients[i]);
+                System.out.println("Message: " + storedMessage[i]);
                 }
             }
-            }
+        }
     }
 }
 }
