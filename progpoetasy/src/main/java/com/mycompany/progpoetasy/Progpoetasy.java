@@ -62,7 +62,7 @@ public class Progpoetasy {
             System.out.println("and a special character. ");
         }
     } 
-    String phonenumber;
+    String phonenumber = null;
     for (int i =0; i !=-1; i++){
         System.out.println("Enter your cellphone number: ");
         phonenumber = myRegister.nextLine().trim();

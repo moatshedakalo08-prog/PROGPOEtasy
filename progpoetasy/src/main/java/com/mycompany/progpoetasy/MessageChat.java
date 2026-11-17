@@ -25,6 +25,10 @@ public class MessageChat {
     String[] storedMessage;
     String[] deletedMessage;
     String[] hash;
+    String[] storedIds;
+    String[] storedHashes;
+    String[] storedRecipients;
+    String senderCell;
    //use constructor to assign values to attributes
     public MessageChat(int numTexts){
     this.arraySize = numTexts;
@@ -34,10 +38,16 @@ public class MessageChat {
     this.counterOne = 0;
     this.counterTwo = 0;
     this.counterThree = 0;
-    this.sentMessage= new String[counterOne + 1];
-    this.storedMessage= new String[counterTwo + 1];
-    this.deletedMessage= new String[counterThree + 1];
+    this.sentMessage= new String[counterOne];
+    this.storedMessage= new String[counterTwo];
+    this.deletedMessage= new String[counterThree];
+    this.storedIds = new String[arraySize];
+    this.storedHashes = new String[arraySize];
+    this.storedRecipients = new String[arraySize];
    }
+ public void setSenderCell(String senderCell){
+    this.senderCell = senderCell;
+ }
     //the core funtion that also allows the process tro be looped
  public void message (){
      Scanner myChat = new Scanner(System.in); {
@@ -78,9 +88,13 @@ public class MessageChat {
                 sentMessage[counterOne] = message[i];
                 counterOne = counterOne + 1;
                 }
-            else if( "Store".equalsIgnoreCase(status)){
+            else if("Store".equalsIgnoreCase(status)){
             storedMessage[counterTwo] = message[i];
+            storedIds[counterTwo] = id[i];
+            storedHashes[counterTwo] = hash[i];
+            storedRecipients[counterTwo] = recipient;
             counterTwo = counterTwo + 1;
+            System.out.println("Message stored.");
             }
             else if( "Delete".equalsIgnoreCase(status)){
             deletedMessage[counterThree] = message[i];
@@ -145,12 +159,12 @@ public class MessageChat {
         int decision = myMessage.nextInt();
         myMessage.nextLine(); // Clear scanner buffer trailing newline
 
-        return switch (decision) {
-            case 0 -> "Delete";
-            case 2 -> "Send";
-            case 3 -> "Store";
-            default -> "Unknown";
-        };
+    return switch (decision) {
+      case 1 -> "Delete";
+      case 2 -> "Send";
+      case 3 -> "Store";
+      default -> "Unknown";
+};
     }
 
     public void printMessages(String message) {
