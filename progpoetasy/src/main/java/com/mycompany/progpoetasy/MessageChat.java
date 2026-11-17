@@ -192,4 +192,113 @@ public class MessageChat {
         } catch (IOException e) {
         }
     }
+    public void showStoredMessagesMenu(){
+    Scanner report = new Scanner(System.in);
+    System.out.println("\n--- Stored Messages ---");
+    System.out.println("a) Display sender and recipient of all stored");
+    System.out.println("b) Display longest stored message");
+    System.out.println("c) Search by Message ID");
+    System.out.println("d) Search by Recipient");
+    System.out.println("e) Delete by Message Hash");
+    System.out.println("f) Display full report");
+    System.out.print("Choose a-f: ");
+    String choice = report.nextLine().trim().toLowerCase();
+
+    switch(choice){
+        case "a" -> { // SENDER AND RECIEPIENT
+            if(counterTwo == 0){
+              System.out.println("No stored messages.");
+            } 
+            else {
+              for(int i = 0; i < counterTwo; i++){
+                System.out.println("Sender: " + senderCell);
+                System.out.println( "  Recipient: " + storedRecipients[i]);
+              }
+            }
+            }
+
+        case "b" -> { //LONGEST STORED MESSAGE
+            if(counterTwo == 0){
+             System.out.println("No stored messages.");
+            } 
+            else {
+                String lgst = storedMessage[0];
+                for(int i = 1; i < counterTwo; i++){
+                  if(storedMessage[i].length() > lgst.length()){
+                    lgst = storedMessage[i];
+                    }
+                }
+            System.out.println("Longest stored message: " + lgst);
+            }
+            }
+
+        case "c" -> { //SEARCHING USING ID
+            System.out.print("Enter Mssage ID to search: ");
+            String searchId = report.nextLine().trim();
+            boolean foundId = false;
+            for(int i = 0; i < counterTwo; i++){
+                if(storedIds[i] != null && storedIds[i].equals(searchId)){
+                System.out.println("Recipient: " + storedRecipients[i]);
+                System.out.println("Message: " + storedMessage[i]);
+                foundId = true;
+                }
+            }
+            if(!foundId) System.out.println("Message ID not found.");
+            }
+
+        case "d" -> {
+            // d. search by recipient
+            System.out.print("Enter recipient number: ");
+            String searchRec = report.nextLine().trim();
+            boolean foundRec = false;
+            for(int i = 0; i < counterTwo; i++){
+                if(storedRecipients[i] != null && storedRecipients[i].equals(searchRec)){
+                    System.out.println("Message: " + storedMessage[i]);
+                    foundRec = true;
+                }
+            }
+            if(!foundRec) System.out.println("No messages for that recipient.");
+            }
+
+        case "e" -> {
+            // e. delete by hash
+            System.out.print("Enter Message Hash to delete: ");
+            String searchHash = report.nextLine().trim();
+            boolean deleted = false;
+            for(int i = 0; i < counterTwo; i++){
+                if(storedHashes[i] != null && storedHashes[i].equals(searchHash)){
+                    // shift everything left to close the gap
+                    for(int j = i; j < counterTwo - 1; j++){
+                        storedMessage[j] = storedMessage[j+1];
+                        storedIds[j] = storedIds[j+1];
+                        storedHashes[j] = storedHashes[j+1];
+                        storedRecipients[j] = storedRecipients[j+1];
+                    }
+                    counterTwo--;
+                    System.out.println("Message with hash " + searchHash + " deleted.");
+                    deleted = true;
+                    break;
+                }
+            }
+            if(!deleted) System.out.println("Hash not found.");
+            }
+
+        case "f" -> {
+            // f. full report
+            if(counterTwo == 0){
+                System.out.println("No stored messages.");
+            } 
+            else {
+                for(int i = 0; i < counterTwo; i++){
+                    System.out.println("--- Message " + (i+1) + " ---");
+                    System.out.println("ID: " + storedIds[i]);
+                    System.out.println("Hash: " + storedHashes[i]);
+                    System.out.println("Sender: " + senderCell);
+                    System.out.println("Recipient: " + storedRecipients[i]);
+                    System.out.println("Message: " + storedMessage[i]);
+                }
+            }
+            }
+    }
+}
 }
