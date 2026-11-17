@@ -97,34 +97,45 @@ public class Progpoetasy {
     }
     int option;
     option = 0;
-    for (int i = 0; option != 3; i++){
+    String userCellNumber = phonenumber;
+    MessageChat chatSystem = null; 
+for (int i = 0; option != 4; i++){
     Scanner myLogin = new Scanner(System.in);
     System.out.println("Select a feature to use:");
     System.out.println("Option 1) Send message");
     System.out.println("Option 2) Show recently sent messages");
     System.out.println("Option 3) Quit");
+    System.out.println("Option 4) Stored Messages"); 
     option = myLogin.nextInt();
+    myLogin.nextLine(); 
     System.out.println(" Welcome to Tasy's Chat box");
+
     switch (option){
         case 1 -> {
-        System.out.println("Enter the nuber of messges you want to send");
-        int numMessage = myLogin.nextInt();
-        // Instantiation of the class
-        MessageChat chatSystem = new MessageChat(numMessage);
-        chatSystem.message();
-        
-        System.out.println("\n=== Process Finished Successfully ===");
-        myLogin.close();
-    
+            System.out.println("Enter the number of messages you want to send");
+            int numMessage = myLogin.nextInt();
+            myLogin.nextLine();
+            if(chatSystem == null){
+                chatSystem = new MessageChat(numMessage);
+                chatSystem.setSenderCell(userCellNumber);
+            }
+            chatSystem.message();
         }
         case 2 -> {
-        System.out.println("Coming soon");
+            System.out.println("Coming soon");
         }
         case 3 -> {
-         option = 3;
+            option = 3;
+        }
+        case 4 -> { 
+            if(chatSystem == null){
+                System.out.println("No stored messages yet. Send a message first.");
+            } else {
+                chatSystem.showStoredMessagesMenu();
+            }
         }
     }
-    }
+}
     }
     //Check if username is correctly formatted
     public static Boolean checkUserName(String regUsername){
