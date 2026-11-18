@@ -102,6 +102,9 @@ public class MessageChat {
             }
             else if( "Delete".equalsIgnoreCase(status)){
             deletedMessage[counterThree] = message[i];
+            storedIds[counterThree] = id[i];
+            storedHashes[counterThree] = hash[i];
+            storedRecipients[counterThree] = recipient;
             counterThree = counterThree + 1;
             System.out.println("Message deleted.");
             } 
