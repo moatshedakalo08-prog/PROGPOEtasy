@@ -130,7 +130,7 @@ public class ProgpoetasyTest {
     @Test
     void testSentMessage_OptionDelete() {
         // Simulates user entering option '0' (Delete message)
-        String simulatedInput = "0\n";
+        String simulatedInput = "1/n";
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
         MessageChat chat = new MessageChat(1);
