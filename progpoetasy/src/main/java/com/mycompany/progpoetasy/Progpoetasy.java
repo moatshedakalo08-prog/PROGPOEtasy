@@ -99,23 +99,22 @@ public class Progpoetasy {
     option = 0;
     String userCellNumber = phonenumber;
     MessageChat chatSystem = null; 
-for (int i = 0; option != 4; i++){
-    Scanner myLogin = new Scanner(System.in);
+    for (int i = 0; option != 3; i++) {
     System.out.println("Select a feature to use:");
     System.out.println("Option 1) Send message");
     System.out.println("Option 2) Show recently sent messages");
     System.out.println("Option 3) Quit");
-    System.out.println("Option 4) Stored Messages"); 
-    option = myLogin.nextInt();
-    myLogin.nextLine(); 
+    System.out.println("Option 4) Stored Messages");
+    option = myRegister.nextInt();
+    myRegister.nextLine();
     System.out.println(" Welcome to Tasy's Chat box");
 
-    switch (option){
+    switch (option) {
         case 1 -> {
             System.out.println("Enter the number of messages you want to send");
-            int numMessage = myLogin.nextInt();
-            myLogin.nextLine();
-            if(chatSystem == null){
+            int numMessage = myRegister.nextInt();
+            myRegister.nextLine();
+            if (chatSystem == null) {
                 chatSystem = new MessageChat(numMessage);
                 chatSystem.setSenderCell(userCellNumber);
             }
@@ -125,10 +124,10 @@ for (int i = 0; option != 4; i++){
             System.out.println("Coming soon");
         }
         case 3 -> {
-            option = 3;
+            System.out.println("Exiting chat.");
         }
-        case 4 -> { 
-            if(chatSystem == null){
+        case 4 -> {
+            if (chatSystem == null) {
                 System.out.println("No stored messages yet. Send a message first.");
             } else {
                 chatSystem.showStoredMessagesMenu();
