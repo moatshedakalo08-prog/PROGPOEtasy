@@ -280,10 +280,14 @@ public class MessageChat {
                      storedHashes[k] = storedHashes[k+1];
                      storedRecipients[k] = storedRecipients[k+1];
                     }
-                    counterTwo--;
-                    System.out.println("Message with hash " + searchHash + " deleted.");
-                    deleted = true;
-                    break;
+                  counterTwo--;
+                  storedMessage[counterTwo] = null;
+                  storedIds[counterTwo] = null;
+                  storedHashes[counterTwo] = null;
+                  storedRecipients[counterTwo] = null;
+                  System.out.println("Message with hash " + searchHash + " deleted.");
+                  deleted = true;
+                 break;
                 }
             }
             if(!deleted) System.out.println("Hash not found.");
