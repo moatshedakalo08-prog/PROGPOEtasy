@@ -46,6 +46,7 @@ public class ProgpoetasyTest {
 
     @AfterEach
     public void tearDown() {
+        new java.io.File("messages.json").delete();
     }
 
     @Test
@@ -125,28 +126,38 @@ public class ProgpoetasyTest {
         String hash = chat.createMessageHash("AB123456", "Hello standard text");
         assertEquals("AB1:HELLOTEXT", hash);
     }
-
+    //JUnit testing reference from google
     @Test
     void testSentMessage_OptionSend() {
+    InputStream originalIn = System.in;
+    try {
         String simulatedInput = "2\n";
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
         MessageChat chat = new MessageChat(1);
         String status = chat.SentMessage();
         assertEquals("Send", status);
+    } 
+    finally {
+        System.setIn(originalIn);
     }
+}
 
-    @Test
-    void testSentMessage_OptionDelete() {
-        // Fixed: Changed "1/n" to "1\n" so nextLine() does not fail
+  @Test
+  void testSentMessage_OptionDelete() {
+  InputStream originalIn = System.in;
+   try {
         String simulatedInput = "1\n";
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
         MessageChat chat = new MessageChat(1);
         String status = chat.SentMessage();
         assertEquals("Delete", status);
+    } 
+    finally {
+        System.setIn(originalIn);
     }
-
+}
     @Test
     void testReturnTotalMessages() {
         MessageChat chat = new MessageChat(5);
