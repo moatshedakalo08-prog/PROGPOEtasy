@@ -29,12 +29,12 @@ public class login {
     Boolean password = false;
     Boolean username = false;
     
-    if (logUser.equals(regUser)){
+   if (logUser != null && logUser.equals(regUser)) {
     username = true;
     }
-    if (logPass.equals(regPass)){
+   if (logPass != null && logPass.equals(regPass)) {
     password = true;
-    }
+   }
     return password && username;
     }
    
