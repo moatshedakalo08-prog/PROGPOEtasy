@@ -83,34 +83,34 @@ public class MessageChat {
         hash[i] = createMessageHash(id[i], message[i]);
                 
         String status = SentMessage();
-            if( "Send".equalsIgnoreCase(status)){
-                printMessages(message[i]);
-                sentMessage[counterOne] = message[i];
-                storedIds[counterOne] = id[i];
-                storedHashes[counterOne] = hash[i];
-                storedRecipients[counterOne] = recipient;
-                counterOne = counterOne + 1;
-                System.out.println("Message sent.");
-                }
-            else if("Store".equalsIgnoreCase(status)){
-            storedMessage[counterTwo] = message[i];
-            storedIds[counterTwo] = id[i];
-            storedHashes[counterTwo] = hash[i];
-            storedRecipients[counterTwo] = recipient;
-            counterTwo = counterTwo + 1;
-            System.out.println("Message stored.");
-            }
-            else if( "Delete".equalsIgnoreCase(status)){
-            deletedMessage[counterThree] = message[i];
-            storedIds[counterThree] = id[i];
-            storedHashes[counterThree] = hash[i];
-            storedRecipients[counterThree] = recipient;
-            counterThree = counterThree + 1;
-            System.out.println("Message deleted.");
-            } 
-            int msgs = returnTotalMessages(i);
-            System.out.println("The total number of messages entered is " +(msgs+1));
-            saveMessageData("messages.json",message[i], id[i], hash[i],sentMessage[counterOne],storedMessage[counterTwo],storedMessage[counterThree]);
+        String sentVal = null, storedVal = null, deletedVal = null;
+       // REFERENCED FROM GOOGLE
+       if ("Send".equalsIgnoreCase(status)) {
+       printMessages(message[i]);
+       sentMessage[counterOne] = message[i];
+       sentVal = sentMessage[counterOne];
+       counterOne = counterOne + 1;
+       System.out.println("Message sent.");
+       } 
+       else if ("Store".equalsIgnoreCase(status)) {
+       storedMessage[counterTwo] = message[i];
+       storedIds[counterTwo] = id[i];
+       storedHashes[counterTwo] = hash[i];
+       storedRecipients[counterTwo] = recipient;
+      storedVal = storedMessage[counterTwo];
+      counterTwo = counterTwo + 1;
+      System.out.println("Message stored.");
+      } 
+       else if ("Delete".equalsIgnoreCase(status)) {
+       deletedMessage[counterThree] = message[i];
+       deletedVal = deletedMessage[counterThree];
+       counterThree = counterThree + 1;
+       System.out.println("Message deleted.");
+       }
+
+      int msgs = returnTotalMessages(i);
+      System.out.println("The total number of messages entered is " + (msgs + 1));
+      saveMessageData("messages.json", message[i], id[i], hash[i], sentVal, storedVal, deletedVal);
             }    
         }
  }
