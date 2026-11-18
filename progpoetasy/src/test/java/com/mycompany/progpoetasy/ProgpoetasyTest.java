@@ -142,8 +142,11 @@ public class ProgpoetasyTest {
         MessageChat chat = new MessageChat(5);
         assertEquals(3, chat.returnTotalMessages(3));
     }
-       
+    
+
     
   
    
 }   
+
+
