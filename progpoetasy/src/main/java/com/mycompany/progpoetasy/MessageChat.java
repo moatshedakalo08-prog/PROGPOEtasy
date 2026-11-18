@@ -144,17 +144,17 @@ public class MessageChat {
     
     return getSAPhonePattern().matcher(cell).matches();
     }
-  public String createMessageHash(String id, String text) {
-        String firstTwo = id.substring(0, 2);
-        int placeholderIndex = 1;
+ public String createMessageHash(String id, String text) {
+    String firstTwo = id.substring(0, 2);
+    int placeholderIndex = 1;
 
-        int lastWordIndex = text.lastIndexOf(' ');
-        String lastOne = (lastWordIndex == -1) ? text.toUpperCase() : text.substring(lastWordIndex + 1).toUpperCase();
-        
-        String firstOne = text.trim().split("\\s+")[0].toUpperCase();
-        
-        return firstTwo + placeholderIndex + ":" + firstOne + lastOne;
-    }
+    String trimmedText = text.trim();
+    int lastWordIndex = trimmedText.lastIndexOf(' ');
+    String lastOne = (lastWordIndex == -1) ? trimmedText.toUpperCase() : trimmedText.substring(lastWordIndex + 1).toUpperCase();
+    String firstOne = trimmedText.split("\\s+")[0].toUpperCase();
+
+    return firstTwo + placeholderIndex + ":" + firstOne + lastOne;
+}
 
     public String SentMessage() {
         Scanner myMessage = new Scanner(System.in);
