@@ -38,9 +38,9 @@ public class MessageChat {
     this.counterOne = 0;
     this.counterTwo = 0;
     this.counterThree = 0;
-    this.sentMessage= new String[counterOne];
-    this.storedMessage= new String[counterTwo];
-    this.deletedMessage= new String[counterThree];
+    this.sentMessage= new String[arraySize];
+    this.storedMessage= new String[arraySize];
+    this.deletedMessage= new String[arraySize];
     this.storedIds = new String[arraySize];
     this.storedHashes = new String[arraySize];
     this.storedRecipients = new String[arraySize];
@@ -86,7 +86,11 @@ public class MessageChat {
             if( "Send".equalsIgnoreCase(status)){
                 printMessages(message[i]);
                 sentMessage[counterOne] = message[i];
+                storedIds[counterOne] = id[i];
+                storedHashes[counterOne] = hash[i];
+                storedRecipients[counterOne] = recipient;
                 counterOne = counterOne + 1;
+                System.out.println("Message sent.");
                 }
             else if("Store".equalsIgnoreCase(status)){
             storedMessage[counterTwo] = message[i];
@@ -99,6 +103,7 @@ public class MessageChat {
             else if( "Delete".equalsIgnoreCase(status)){
             deletedMessage[counterThree] = message[i];
             counterThree = counterThree + 1;
+            System.out.println("Message deleted.");
             } 
             int msgs = returnTotalMessages(i);
             System.out.println("The total number of messages entered is " +(msgs+1));
